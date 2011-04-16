@@ -1,12 +1,17 @@
 package greenwatch.client.service;
 
+import greenwatch.common.resource.PollutionResource;
 import greenwatch.common.vo.PollutionVO;
 
+import java.util.Arrays;
 import java.util.List;
+
+import org.restlet.resource.ClientResource;
 
 import android.os.AsyncTask;
 
-public class GetPollutionService extends AsyncTask<Double, Void, List<PollutionVO>> {
+public class GetPollutionService extends
+		AsyncTask<Double, Void, List<PollutionVO>> {
 
 	public static final boolean USE_MOCKS = true;
 
@@ -19,10 +24,13 @@ public class GetPollutionService extends AsyncTask<Double, Void, List<PollutionV
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			return InMemoryStorage.getInstance().getPollutions(params[0], params[1]);
+			return InMemoryStorage.getInstance().getPollutions(params[0],
+					params[1]);
 		} else {
-			// TODO implement real service call
-			return null;
+			ClientResource cr = new ClientResource(
+					"http://10.0.2.2:8888/rest/pollutions");
+			PollutionResource resource = cr.wrap(PollutionResource.class);
+			return Arrays.asList(resource.getPollutions(params[0], params[1]));
 		}
 	}
 
