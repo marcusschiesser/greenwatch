@@ -1,7 +1,7 @@
 package greenwatch.client.service;
 
 import greenwatch.common.resource.PollutionResource;
-import greenwatch.common.vo.PollutionVO;
+import greenwatch.common.vo.PollutionTO;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,13 +11,13 @@ import org.restlet.resource.ClientResource;
 import android.os.AsyncTask;
 
 public class GetPollutionService extends
-		AsyncTask<Double, Void, List<PollutionVO>> {
+		AsyncTask<Double, Void, List<PollutionTO>> {
 
 	public static final boolean USE_MOCKS = true;
 
 	@Override
-	protected List<PollutionVO> doInBackground(Double... params) {
-		if (USE_MOCKS) { // TODO: use Resources instead
+	protected List<PollutionTO> doInBackground(Double... params) {
+		if (false) { // TODO: use Resources instead
 			try {
 				// sleep to simulate async call
 				Thread.sleep(2000);

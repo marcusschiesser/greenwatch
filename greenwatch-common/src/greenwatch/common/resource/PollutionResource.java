@@ -1,18 +1,18 @@
 package greenwatch.common.resource;
 
+import greenwatch.common.vo.PollutionTO;
+
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 
-import greenwatch.common.vo.PollutionVO;
-
 public interface PollutionResource {
 	@Get
-	PollutionVO[] getPollutions(double lat, double lng);
+	PollutionTO[] getPollutions(double lat, double lng);
 
 	@Put
-	void storePollution(PollutionVO pollution);
-	
+	void storePollution(PollutionTO pollution);
+
 	@Post
-	void updatePollution(PollutionVO pollution);
+	void updatePollution(PollutionTO pollution);
 }
