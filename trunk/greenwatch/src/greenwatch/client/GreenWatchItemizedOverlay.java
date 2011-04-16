@@ -15,8 +15,8 @@ public class GreenWatchItemizedOverlay extends ItemizedOverlay {
 	Context mContext;
 	
 	public GreenWatchItemizedOverlay(Drawable defaultMarker) {
-		super(defaultMarker);
-		// TODO Auto-generated constructor stub
+		super(boundCenterBottom(defaultMarker));
+		
 	}
 	
 	// to add new overlay items to the ArrayList
