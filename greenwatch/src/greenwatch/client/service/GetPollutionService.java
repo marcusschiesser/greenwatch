@@ -17,7 +17,7 @@ public class GetPollutionService extends
 
 	@Override
 	protected List<PollutionTO> doInBackground(Double... params) {
-		if (false) { // TODO: use Resources instead
+		if (USE_MOCKS) { // TODO: use Resources instead
 			try {
 				// sleep to simulate async call
 				Thread.sleep(2000);
