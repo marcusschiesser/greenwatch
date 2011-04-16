@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent">
-	<TextView android:id="@+id/textView1" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="@string/reportPollution_Title">
+	android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@string/reportPollution_Title"
+		android:id="@+id/tv_Title">
 	</TextView>
-	
 	<ImageView android:id="@+id/pollutionCaptureView"
-		android:layout_height="wrap_content" android:src="@drawable/icon"
-		android:layout_width="wrap_content">
-	</ImageView>
+		android:layout_width="wrap_content" android:src="@drawable/icon"
+		android:layout_height="wrap_content"></ImageView>
+	<Spinner android:prompt="@array/Level" android:id="@+id/spinner_level"
+		android:layout_height="wrap_content" android:layout_gravity="top"
+		android:layout_width="match_parent"></Spinner>
+	<EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/edit_report" android:text="Comment"></EditText>
+	<Button android:layout_width="wrap_content" android:id="@+id/b_report" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:text="@string/r_button" android:onClick="myClickHandler_b_report"></Button>
 </LinearLayout>
