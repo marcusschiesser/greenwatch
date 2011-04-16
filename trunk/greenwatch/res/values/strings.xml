@@ -4,4 +4,5 @@
     <string name="app_name">greenwatch</string>
     <string name="edit_waiting">Bitte warten...</string>
     <string name="reportPollution_Title">Report the Pollution</string>
+    <string name="locationReaderActivity">Location Reader</string>
 </resources>
