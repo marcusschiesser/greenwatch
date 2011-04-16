@@ -2,18 +2,16 @@ package greenwatch.client.service;
 
 import greenwatch.common.vo.PollutionVO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import android.os.AsyncTask;
 
-public class GetPollutionService extends AsyncTask<Long, Void, List<PollutionVO>> {
+public class GetPollutionService extends AsyncTask<Double, Void, List<PollutionVO>> {
 
 	public static final boolean USE_MOCKS = true;
 
 	@Override
-	protected List<PollutionVO> doInBackground(Long... params) {
+	protected List<PollutionVO> doInBackground(Double... params) {
 		if (USE_MOCKS) { // TODO: use Resources instead
 			try {
 				// sleep to simulate async call

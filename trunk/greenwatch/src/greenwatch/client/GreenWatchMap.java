@@ -50,7 +50,7 @@ public class GreenWatchMap extends MapActivity {
 		}
 	}
 	
-	public void getPolutions(long lat, long lng) {
+	public void getPolutions(Double lat, Double lng) {
 		GetPollutionService service = new GetPollutionService() {
     		@Override
     		protected void onPreExecute() {
