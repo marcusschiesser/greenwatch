@@ -2,5 +2,6 @@
 <resources>
     <string name="main_new_pollution">Neue Verschmutzung</string>
     <string name="app_name">greenwatch</string>
+    <string name="edit_waiting">Bitte warten...</string>
     <string name="reportPollution_Title">Report the Pollution</string>
 </resources>
