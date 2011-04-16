@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="common-src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="libs/org.restlet.jar"/>
+	<classpathentry kind="lib" path="/greenwatch-common/libs/org.restlet.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
