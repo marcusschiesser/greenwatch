@@ -4,9 +4,16 @@
 	android:padding="10dip">
 	<LinearLayout android:layout_width="fill_parent"
 		android:orientation="vertical" android:layout_height="wrap_content" android:layout_weight="1" >
-		<TextView android:id="@+id/main_map"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="Hier soll die map hin." />
+			
+			<com.google.android.maps.MapView
+    			xmlns:android="http://schemas.android.com/apk/res/android"
+    			android:id="@+id/mapview"
+    			android:layout_width="fill_parent"
+    			android:layout_height="fill_parent"
+    			android:clickable="true"
+    			android:apiKey="0aFffposDa1_Dtpe3Er_UcfccHbgO2X34Zq_GJw"
+			/>
+			
 	</LinearLayout>
 	<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" 
 	android:gravity="center">

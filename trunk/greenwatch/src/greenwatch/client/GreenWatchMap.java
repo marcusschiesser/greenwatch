@@ -7,21 +7,25 @@ import greenwatch.common.vo.PollutionVO;
 
 import java.util.List;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class GreenWatchMap extends Activity {
+import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapView;
+
+public class GreenWatchMap extends MapActivity {
     private ProgressDialog mProgressDialog;
 
 	/** Called when the activity is first created. */
-	// Dieser Kommentar ist sinnfrei
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.main);  
+        MapView mapView = (MapView) findViewById(R.id.mapview);
+        mapView.setBuiltInZoomControls(true);
         
 		mProgressDialog = new ProgressDialog(this);
 		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -30,6 +34,12 @@ public class GreenWatchMap extends Activity {
 		mProgressDialog.setIndeterminate(true);
         
     }
+    
+    @Override
+    protected boolean isRouteDisplayed() {
+        return false;
+    }
+    
     
 	public void myClickHandler(View view) {
 		switch (view.getId()) {
@@ -49,6 +59,7 @@ public class GreenWatchMap extends Activity {
 			@Override
 			protected void onPostExecute(List<PollutionVO> result) {
 				mProgressDialog.dismiss();
+				
 				// TODO do something with the pollution!!!
 			}
     	};
