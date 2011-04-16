@@ -13,11 +13,15 @@ public class CurrentLocation {
 	 * Reads the current location of the device using one of the providers (gps,
 	 * network, ip).
 	 * 
+	 * LocationManager can be obtained by calling something similar to this:
+	 * <code>locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);</code>
+	 * in the Activity.
+	 * 
 	 * @param locationManager
 	 *            Location manager
 	 * @return Current location of the device
 	 */
-	public static Location getCurrentLocation(LocationManager locationManager) {
+	public static Location readCurrentLocation(LocationManager locationManager) {
 
 		// setup the criteria for finding location using best provider (gps,
 		// ip-based, cell-network based)
