@@ -39,7 +39,8 @@ public class ReportPollutionActivity extends Activity {
 	public void myClickHandler_b_report(View view) {
 		switch (view.getId()) {
 		case R.id.b_report:
-			final Intent intent = new Intent(this,
+			//TO DO: Create new Activity 
+/*			final Intent intent = new Intent(this,
 					ReportPollutionActivity.class);
 			
 			EditText txtComment = (EditText) findViewById(R.id.edit_report);
@@ -48,7 +49,7 @@ public class ReportPollutionActivity extends Activity {
 	        intent.putExtra(LEVEL, spinner.getSelectedItem().toString());
 	        intent.putExtra(COMMENT, txtComment.getText().toString());
 	        
-			startActivity(intent);
+			startActivity(intent);*/
 		}
 	}
 
