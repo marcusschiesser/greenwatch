@@ -8,6 +8,10 @@
 	<ImageView android:id="@+id/pollutionCaptureView"
 		android:layout_width="wrap_content" android:src="@drawable/icon"
 		android:layout_height="wrap_content"></ImageView>
+	<TextView
+		android:id="@+id/currentLocationTextView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></TextView>
 	<Spinner android:prompt="@array/Level" android:id="@+id/spinner_level"
 		android:layout_height="wrap_content" android:layout_gravity="top"
 		android:layout_width="match_parent"></Spinner>
