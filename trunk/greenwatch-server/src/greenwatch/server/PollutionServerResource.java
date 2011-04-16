@@ -3,17 +3,21 @@ package greenwatch.server;
 import greenwatch.common.resource.PollutionResource;
 import greenwatch.common.vo.PollutionVO;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-public class JDOPollutionResource implements PollutionResource {
+import org.restlet.resource.Get;
+import org.restlet.resource.Post;
+import org.restlet.resource.Put;
+import org.restlet.resource.ServerResource;
 
-	@Override
-	public List<PollutionVO> getPollutions(double lat, double lng) {
+public class PollutionServerResource extends ServerResource implements PollutionResource {
+
+	@Get
+	public PollutionVO[] getPollutions(double lat, double lng) {
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
@@ -26,7 +30,7 @@ public class JDOPollutionResource implements PollutionResource {
 				List<Double> arg = Arrays.asList(lat - 0.1d, lat + 0.1d, lng - 0.1d, lng + 0.1d);
 				List<PollutionVO> results = (List<PollutionVO>) query.execute(arg);
 				if (!results.isEmpty()) {
-					return results;
+					return results.toArray(new PollutionVO[results.size()]);
 				}
 			} finally {
 				query.closeAll();
@@ -34,11 +38,10 @@ public class JDOPollutionResource implements PollutionResource {
 		} finally {
 			pm.close();
 		}
-		// TODO Auto-generated method stub
-		return new ArrayList<PollutionVO>();
+		return new PollutionVO[0];
 	}
 
-	@Override
+	@Put
 	public void storePollution(PollutionVO pollution) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
@@ -48,7 +51,7 @@ public class JDOPollutionResource implements PollutionResource {
 		}
 	}
 
-	@Override
+	@Post
 	public void updatePollution(PollutionVO pollution) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {

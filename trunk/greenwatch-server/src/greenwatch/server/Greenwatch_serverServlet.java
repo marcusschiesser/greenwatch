@@ -24,11 +24,11 @@ public class Greenwatch_serverServlet extends HttpServlet {
 		pollution.setLongitude(lng);
 
 		resp.getWriter().println("Pollution:" + pollution);
-		PollutionResource db = new JDOPollutionResource();
+		PollutionResource db = new PollutionServerResource();
 		db.storePollution(pollution);
 		resp.getWriter().println("Pollution saved: "+ pollution);
 		
-		List<PollutionVO> pollutions = db.getPollutions(lat, lng);
+		PollutionVO[] pollutions = db.getPollutions(lat, lng);
 		
 
 	}
