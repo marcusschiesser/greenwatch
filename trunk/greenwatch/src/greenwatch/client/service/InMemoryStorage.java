@@ -1,5 +1,7 @@
 package greenwatch.client.service;
 
+import greenwatch.common.vo.PollutionStatus;
+import greenwatch.common.vo.PollutionTO;
 import greenwatch.common.vo.PollutionVO;
 
 import java.util.ArrayList;
@@ -12,11 +14,11 @@ public class InMemoryStorage {
 
 	private static InMemoryStorage INSTANCE;
 
-	private Map<Integer, PollutionVO> pollutions;
+	private Map<Integer, PollutionTO> pollutions;
 	int idx = 0;
 
 	protected InMemoryStorage() {
-		pollutions = new HashMap<Integer, PollutionVO>();
+		pollutions = new HashMap<Integer, PollutionTO>();
 	}
 
 	public static InMemoryStorage getInstance() {
@@ -26,19 +28,19 @@ public class InMemoryStorage {
 		return INSTANCE;
 	}
 
-	public void addPollution(PollutionVO pollution) {
+	public void addPollution(PollutionTO pollution) {
 		pollution.setId(idx++);
 		pollutions.put(pollution.getId(), pollution);
 	}
 
-	public List<PollutionVO> getPollutions(double lat, double lng) {
-		List<PollutionVO> tmp = new ArrayList<PollutionVO>();
+	public List<PollutionTO> getPollutions(double lat, double lng) {
+		ArrayList<PollutionTO> tmp = new ArrayList<PollutionTO>();
 		Random rand = new Random();
 		for (int i = 0; i < 10; i++) {
 			PollutionVO pollution = new PollutionVO();
 			pollution.setLatitude(lat + rand.nextDouble());
 			pollution.setLongitude(lng + rand.nextDouble());
-			pollution.setStatus(PollutionVO.Status.active);
+			pollution.setStatus(PollutionStatus.active);
 			pollution.setId(idx++);
 			tmp.add(pollution);
 		}
@@ -46,18 +48,18 @@ public class InMemoryStorage {
 			PollutionVO pollution = new PollutionVO();
 			pollution.setLatitude(lat + rand.nextDouble());
 			pollution.setLongitude(lng + rand.nextDouble());
-			pollution.setStatus(PollutionVO.Status.inactive);
+			pollution.setStatus(PollutionStatus.inactive);
 			pollution.setId(idx++);
 			tmp.add(pollution);
 		}
-		for (PollutionVO poll : pollutions.values()) {
+		for (PollutionTO poll : pollutions.values()) {
 			// add on first position
 			tmp.add(0, poll);
 		}
 		return tmp;
 	}
 
-	public void updatePollution(PollutionVO pollutionVO) {
-		pollutions.put(pollutionVO.getId(), pollutionVO);
+	public void updatePollution(PollutionTO pollution) {
+		pollutions.put(pollution.getId(), pollution);
 	}
 }

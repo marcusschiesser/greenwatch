@@ -1,10 +1,10 @@
 package greenwatch.server;
 
 import greenwatch.common.resource.PollutionResource;
+import greenwatch.common.vo.PollutionTO;
 import greenwatch.common.vo.PollutionVO;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ public class Greenwatch_serverServlet extends HttpServlet {
 		resp.getWriter().println("Hello, world");
 
 		resp.getWriter().println("I will add a new pollution soon.");
-		PollutionVO pollution = new PollutionVO();
+		PollutionDO pollution = new PollutionDO();
 		double lat = 12.00d;
 		double lng = 15.55d;
 		pollution.setLatitude(lat);
@@ -26,10 +26,14 @@ public class Greenwatch_serverServlet extends HttpServlet {
 		resp.getWriter().println("Pollution:" + pollution);
 		PollutionResource db = new PollutionServerResource();
 		db.storePollution(pollution);
-		resp.getWriter().println("Pollution saved: "+ pollution);
-		
-		PollutionVO[] pollutions = db.getPollutions(lat, lng);
-		
+
+		resp.getWriter().println("Pollution saved: " + pollution);
+
+		resp.getWriter().println("\n\nQuerying for pollutions...");
+		PollutionTO[] pollutions = db.getPollutions(lat, lng);
+		for (PollutionTO poll : pollutions) {
+			resp.getWriter().println("Pollution found: " + poll);
+		}
 
 	}
 }

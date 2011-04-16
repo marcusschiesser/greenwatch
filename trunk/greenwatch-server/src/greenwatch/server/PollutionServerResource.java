@@ -1,9 +1,9 @@
 package greenwatch.server;
 
 import greenwatch.common.resource.PollutionResource;
+import greenwatch.common.vo.PollutionTO;
 import greenwatch.common.vo.PollutionVO;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -17,20 +17,23 @@ import org.restlet.resource.ServerResource;
 public class PollutionServerResource extends ServerResource implements PollutionResource {
 
 	@Get
-	public PollutionVO[] getPollutions(double lat, double lng) {
+	public PollutionTO[] getPollutions(double lat, double lng) {
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
-			Query query = pm.newQuery(PollutionVO.class);
-			query.setFilter("(latitude >= latLow && latitude <= latHigh) && (longitude >= lngLow && longitude <= lngHigh)");
+			Query query = pm.newQuery(PollutionDO.class);
+			query.setFilter("(latitude>=latLow && latitude<=latHigh) && (longitude>=lngLow && longitude<=lngHigh)");
 			query.setOrdering("timestamp desc");
-			query.declareParameters("double latLow double latHigh double lngLow double lngHigh");
+			query.declareParameters("double latLow, double latHigh, double lngLow, double lngHigh");
 
+			query = pm.newQuery(PollutionDO.class);
+			query.setOrdering("timestamp desc");
 			try {
-				List<Double> arg = Arrays.asList(lat - 0.1d, lat + 0.1d, lng - 0.1d, lng + 0.1d);
-				List<PollutionVO> results = (List<PollutionVO>) query.execute(arg);
+				double[] arr = new double[] { lat - 0.1d, lat + 0.1d, lng - 0.1d, lng + 0.1d };
+
+				List<PollutionDO> results = (List<PollutionDO>) query.execute();
 				if (!results.isEmpty()) {
-					return results.toArray(new PollutionVO[results.size()]);
+					return results.toArray(new PollutionDO[results.size()]);
 				}
 			} finally {
 				query.closeAll();
@@ -38,11 +41,12 @@ public class PollutionServerResource extends ServerResource implements Pollution
 		} finally {
 			pm.close();
 		}
-		return new PollutionVO[0];
+		// TODO Auto-generated method stub
+		return new PollutionTO[0];
 	}
 
 	@Put
-	public void storePollution(PollutionVO pollution) {
+	public void storePollution(PollutionTO pollution) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(pollution);
@@ -52,7 +56,7 @@ public class PollutionServerResource extends ServerResource implements Pollution
 	}
 
 	@Post
-	public void updatePollution(PollutionVO pollution) {
+	public void updatePollution(PollutionTO pollution) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(pollution);

@@ -3,7 +3,7 @@ package greenwatch.client;
 
 
 import greenwatch.client.service.GetPollutionService;
-import greenwatch.common.vo.PollutionVO;
+import greenwatch.common.vo.PollutionTO;
 
 import java.util.List;
 
@@ -76,7 +76,7 @@ public class GreenWatchMap extends MapActivity {
     			mProgressDialog.show();
     		}
 			@Override
-			protected void onPostExecute(List<PollutionVO> result) {
+			protected void onPostExecute(List<PollutionTO> result) {
 				mProgressDialog.dismiss();
 				
 				// TODO do something with the pollution!!!
