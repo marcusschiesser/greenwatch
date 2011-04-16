@@ -5,10 +5,11 @@
     <string name="edit_waiting">Bitte warten...</string>
     <string name="reportPollution_Title">Report the Pollution</string>
     <string name="locationReaderActivity">Location Reader</string>
-    <string-array name="Level">
+    <string-array name="level">
         <item>Low</item>
         <item>Medium</item>
         <item>High</item>
     </string-array>
     <string name="r_button">Report</string>
+    <string name="level_title">Choose a Level</string>
 </resources>
