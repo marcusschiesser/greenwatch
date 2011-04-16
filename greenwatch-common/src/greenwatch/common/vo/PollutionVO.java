@@ -5,8 +5,8 @@ import java.util.Date;
 public class PollutionVO {
 	private int id;
 	private Date timestamp;
-	private Long lat;
-	private Long lng;
+	private double lat;
+	private double lng;
 	private String imageURL;
 	public enum Intensity { low, high };
 	private Intensity intensity;
@@ -22,16 +22,16 @@ public class PollutionVO {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-	public Long getLat() {
+	public double getLatitude() {
 		return lat;
 	}
-	public void setLat(Long lat) {
+	public void setLatitude(double lat) {
 		this.lat = lat;
 	}
-	public Long getLng() {
+	public double getLongitude() {
 		return lng;
 	}
-	public void setLng(Long lng) {
+	public void setLongitude(double lng) {
 		this.lng = lng;
 	}
 	public String getImageURL() {
