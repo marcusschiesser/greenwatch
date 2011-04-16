@@ -23,6 +23,16 @@ public class CurrentLocation {
 	 */
 	public static Location readCurrentLocation(LocationManager locationManager) {
 
+		String provider = getBestLocationProvider(locationManager);
+
+		// read the current location using the provider
+		Location location = locationManager.getLastKnownLocation(provider);
+
+		return location;
+	}
+
+	public static String getBestLocationProvider(
+			LocationManager locationManager) {
 		// setup the criteria for finding location using best provider (gps,
 		// ip-based, cell-network based)
 		Criteria criteria = new Criteria();
@@ -34,10 +44,6 @@ public class CurrentLocation {
 
 		// search for best provider based on the criteria
 		String provider = locationManager.getBestProvider(criteria, true);
-
-		// read the current location using the provider
-		Location location = locationManager.getLastKnownLocation(provider);
-
-		return location;
+		return provider;
 	}
 }
