@@ -1,8 +1,12 @@
 package greenwatch.common.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PollutionVO {
+public class PollutionVO implements Serializable{
+	
+	private static final long serialVersionUID = 7462442753133548357L;
+	
 	private int id;
 	private Date timestamp;
 	private double lat;
