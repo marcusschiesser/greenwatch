@@ -3,6 +3,7 @@ package greenwatch.client;
 
 
 import greenwatch.client.service.GetPollutionService;
+import greenwatch.client.utils.GeoUtils;
 import greenwatch.common.request.GetPollutionsRequest;
 import greenwatch.common.response.GetPollutionsResponse;
 import greenwatch.common.vo.PollutionTO;
@@ -81,14 +82,14 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
     
 	private void updateLocation(Location location) {
 		if(location!=null) {
-			GeoPoint geoPoint = createGeoPoint(location.getLatitude(), location.getLongitude());
+			GeoPoint geoPoint = GeoUtils.createGeoPoint(location.getLatitude(), location.getLongitude());
 			mapView.getController().setCenter(geoPoint);
 			int minLat = geoPoint.getLatitudeE6() - mapView.getLatitudeSpan() / 2;
 			int minLng = geoPoint.getLongitudeE6() - mapView.getLongitudeSpan() / 2;
 			int maxLat = geoPoint.getLatitudeE6() + mapView.getLatitudeSpan() / 2;
 			int maxLng = geoPoint.getLongitudeE6() + mapView.getLongitudeSpan() / 2;
-			getPolutions(convertGeoInt2Dbl(minLat), convertGeoInt2Dbl(minLng), 
-					convertGeoInt2Dbl(maxLat), convertGeoInt2Dbl(maxLng));
+			getPolutions(GeoUtils.convertGeoInt2Dbl(minLat), GeoUtils.convertGeoInt2Dbl(minLng), 
+					GeoUtils.convertGeoInt2Dbl(maxLat), GeoUtils.convertGeoInt2Dbl(maxLng));
 			
 			//mapView.get
 		}
@@ -103,18 +104,6 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 		}
 	}
 
-	public static GeoPoint createGeoPoint(double lat, double lng) {
-		return new GeoPoint(convertGeoDbl2Int(lat), convertGeoDbl2Int(lng));
-	}
-	
-	public static double convertGeoInt2Dbl(int i) {
-		return new Integer(i).doubleValue() / 1E6;
-	}
-	
-	public static int convertGeoDbl2Int(double dbl) {
-		return (int)(dbl*1E6);
-	}
-	
 	public void getPolutions(double minLat, double minLng, double maxLat, double maxLng) {
 		GetPollutionService service = new GetPollutionService() {
     		@Override
@@ -129,7 +118,7 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 				GreenWatchItemizedOverlay itemizedoverlay = new GreenWatchItemizedOverlay(mMapIcon);
 				
 				for (PollutionTO pollutionVO : result.getPollutions()) {
-					GeoPoint point = createGeoPoint(pollutionVO.getLatitude(), pollutionVO.getLongitude());
+					GeoPoint point = GeoUtils.createGeoPoint(pollutionVO.getLatitude(), pollutionVO.getLongitude());
 					OverlayItem overlayitem = new OverlayItem(point, "Pollution", "Pollution");
 					itemizedoverlay.addOverlay(overlayitem);
 				}
