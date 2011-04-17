@@ -2,7 +2,7 @@ package greenwatch.common.request;
 
 import greenwatch.common.vo.PollutionVO;
 
-public class UpdatePollutionRequest {
+public class UpdatePollutionRequest extends AbstractRequest {
 
 	private int id;
 	private PollutionVO pollution;
