@@ -1,26 +1,15 @@
 package greenwatch.client.service;
 
-import greenwatch.common.vo.PollutionVO;
+import greenwatch.common.request.UpdatePollutionRequest;
+import greenwatch.common.resource.PollutionResource;
+import greenwatch.common.response.UpdatePollutionResponse;
 import android.os.AsyncTask;
 
-public class UpdatePollutionService extends AsyncTask<PollutionVO, Void, Void> {
+public class UpdatePollutionService extends AsyncTask<UpdatePollutionRequest, Void, UpdatePollutionResponse> {
 	@Override
-	protected Void doInBackground(PollutionVO... pollutions) {
-		if (GetPollutionService.USE_MOCKS) { // TODO: use Resources instead
-			try {
-				// sleep to simulate async call
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			InMemoryStorage.getInstance().updatePollution(pollutions[0]);
-		} else {
-			// TODO implement real service call
-		}
-		return null;
+	protected UpdatePollutionResponse doInBackground(UpdatePollutionRequest... pollutions) {
+		PollutionResource resource = ResourceFactory.createPollutionResource();
+		return resource.updatePollution(pollutions[0]);
 	}
 
-	private void storePollution(PollutionVO pollution) {
-		InMemoryStorage.getInstance().addPollution(pollution);
-	}
 }
