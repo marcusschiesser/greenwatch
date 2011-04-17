@@ -2,7 +2,7 @@ package greenwatch.common.response;
 
 import greenwatch.common.vo.PollutionTO;
 
-public class GetPollutionsResponse {
+public class GetPollutionsResponse extends AbstractResponse {
 
 	public GetPollutionsResponse() {
 		super();

@@ -1,6 +1,6 @@
 package greenwatch.common.response;
 
-public class UpdatePollutionResponse {
+public class UpdatePollutionResponse extends AbstractResponse {
 
 	// empty - nothing needed
 }

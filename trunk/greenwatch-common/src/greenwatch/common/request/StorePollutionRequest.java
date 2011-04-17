@@ -2,7 +2,7 @@ package greenwatch.common.request;
 
 import greenwatch.common.vo.PollutionVO;
 
-public class StorePollutionRequest {
+public class StorePollutionRequest extends AbstractRequest {
 	
 	private PollutionVO pollution;
 	private byte[] imageData;

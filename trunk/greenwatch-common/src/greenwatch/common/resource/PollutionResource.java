@@ -10,10 +10,11 @@ import greenwatch.common.response.StorePollutionResponse;
 import greenwatch.common.response.UpdatePollutionResponse;
 
 import org.restlet.resource.Get;
-import org.restlet.resource.Post;
-import org.restlet.resource.Put;
 
 public interface PollutionResource {
+
+	@Get
+	StorePollutionResponse storePollution(StorePollutionRequest request);
 
 	@Get
 	GetPollutionsResponse getPollutions(GetPollutionsRequest request);
@@ -21,9 +22,6 @@ public interface PollutionResource {
 	@Get
 	GetFullPollutionResponse getFullPollution(GetFullPollutionRequest request);
 
-	@Put
-	StorePollutionResponse storePollution(StorePollutionRequest request);
-
-	@Post
+	@Get
 	UpdatePollutionResponse updatePollution(UpdatePollutionRequest request);
 }

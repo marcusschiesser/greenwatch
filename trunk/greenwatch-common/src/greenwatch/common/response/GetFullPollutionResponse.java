@@ -1,5 +1,5 @@
 package greenwatch.common.response;
 
-public class GetFullPollutionResponse {
+public class GetFullPollutionResponse extends AbstractResponse {
 
 }
