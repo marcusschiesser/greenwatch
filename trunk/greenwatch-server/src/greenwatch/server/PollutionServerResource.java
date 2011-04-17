@@ -10,7 +10,6 @@ import greenwatch.common.response.GetPollutionsResponse;
 import greenwatch.common.response.StorePollutionResponse;
 import greenwatch.common.response.UpdatePollutionResponse;
 import greenwatch.common.vo.PollutionTO;
-import greenwatch.common.vo.PollutionVO;
 
 import java.util.List;
 
@@ -18,8 +17,6 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import org.restlet.resource.Get;
-import org.restlet.resource.Post;
-import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
 import util.DatabaseObjectsUtil;
@@ -58,7 +55,7 @@ public class PollutionServerResource extends ServerResource implements Pollution
 		return response;
 	}
 
-	@Put
+	@Get
 	public StorePollutionResponse storePollution(StorePollutionRequest request) {
 
 		PollutionBean bean = DatabaseObjectsUtil.convertStorePollutionRequestToBean(request);
@@ -72,7 +69,7 @@ public class PollutionServerResource extends ServerResource implements Pollution
 		}
 	}
 
-	@Post
+	@Get
 	public UpdatePollutionResponse updatePollution(UpdatePollutionRequest request) {
 		PollutionBean bean = DatabaseObjectsUtil.convertUpdatePollutionRequestToBean(request);
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -85,7 +82,7 @@ public class PollutionServerResource extends ServerResource implements Pollution
 		}
 	}
 
-	@Override
+	@Get
 	public GetFullPollutionResponse getFullPollution(GetFullPollutionRequest request) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
