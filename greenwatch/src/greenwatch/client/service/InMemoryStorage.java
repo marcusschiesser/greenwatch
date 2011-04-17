@@ -33,21 +33,21 @@ public class InMemoryStorage {
 		pollutions.put(pollution.getId(), pollution);
 	}
 
-	public List<PollutionTO> getPollutions(double lat, double lng) {
+	public List<PollutionTO> getPollutions(double minLat, double minLng, double maxLat, double maxLng) {
 		ArrayList<PollutionTO> tmp = new ArrayList<PollutionTO>();
 		Random rand = new Random();
 		for (int i = 0; i < 10; i++) {
 			PollutionVO pollution = new PollutionVO();
-			pollution.setLatitude(lat + rand.nextDouble());
-			pollution.setLongitude(lng + rand.nextDouble());
+			pollution.setLatitude(minLat + rand.nextDouble() * (maxLat-minLat));
+			pollution.setLongitude(minLng + rand.nextDouble() * (maxLng-minLng));
 			pollution.setStatus(PollutionStatus.active);
 			pollution.setId(idx++);
 			tmp.add(pollution);
 		}
 		for (int i = 0; i < 10; i++) {
 			PollutionVO pollution = new PollutionVO();
-			pollution.setLatitude(lat + rand.nextDouble());
-			pollution.setLongitude(lng + rand.nextDouble());
+			pollution.setLatitude(minLat + rand.nextDouble() * (maxLat-minLat));
+			pollution.setLongitude(minLng + rand.nextDouble() * (maxLng-minLng));
 			pollution.setStatus(PollutionStatus.inactive);
 			pollution.setId(idx++);
 			tmp.add(pollution);
