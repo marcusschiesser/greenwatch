@@ -3,7 +3,7 @@ package greenwatch.common.request;
 import greenwatch.common.vo.PollutionIntensity;
 import greenwatch.common.vo.PollutionStatus;
 
-public class GetPollutionsRequest {
+public class GetPollutionsRequest extends AbstractRequest {
 
 	private double minLat;
 	private double maxLat;

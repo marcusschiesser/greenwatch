@@ -1,6 +1,6 @@
 package greenwatch.common.request;
 
-public class GetFullPollutionRequest {
+public class GetFullPollutionRequest extends AbstractRequest {
 
 	private int id;
 
