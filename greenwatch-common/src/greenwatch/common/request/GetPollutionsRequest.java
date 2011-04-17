@@ -5,12 +5,20 @@ import greenwatch.common.vo.PollutionStatus;
 
 public class GetPollutionsRequest {
 
-	private int minLat;
-	private int maxLat;
-	private int minLng;
-	private int maxLng;
+	private double minLat;
+	private double maxLat;
+	private double minLng;
+	private double maxLng;
 	private PollutionIntensity intensity;
 	private PollutionStatus status;
+
+	public GetPollutionsRequest(double minLat, double minLng, double maxLat,
+			double maxLng) {
+		this.minLat = minLat;
+		this.maxLat = maxLat;
+		this.minLng = minLng;
+		this.maxLng = maxLng;
+	}
 
 	public PollutionIntensity getIntensity() {
 		return intensity;
@@ -28,7 +36,7 @@ public class GetPollutionsRequest {
 		this.status = status;
 	}
 
-	public int getMinLat() {
+	public double getMinLat() {
 		return minLat;
 	}
 
@@ -36,7 +44,7 @@ public class GetPollutionsRequest {
 		this.minLat = minLat;
 	}
 
-	public int getMaxLat() {
+	public double getMaxLat() {
 		return maxLat;
 	}
 
@@ -44,7 +52,7 @@ public class GetPollutionsRequest {
 		this.maxLat = maxLat;
 	}
 
-	public int getMinLng() {
+	public double getMinLng() {
 		return minLng;
 	}
 
@@ -52,7 +60,7 @@ public class GetPollutionsRequest {
 		this.minLng = minLng;
 	}
 
-	public int getMaxLng() {
+	public double getMaxLng() {
 		return maxLng;
 	}
 
