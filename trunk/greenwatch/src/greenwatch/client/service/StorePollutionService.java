@@ -1,16 +1,12 @@
 package greenwatch.client.service;
 
-import greenwatch.common.vo.PollutionVO;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import greenwatch.common.request.StorePollutionRequest;
+import greenwatch.common.response.StorePollutionResponse;
 import android.os.AsyncTask;
 
-public class StorePollutionService extends AsyncTask<PollutionVO, Void, Void> {
+public class StorePollutionService extends AsyncTask<StorePollutionRequest, Void, StorePollutionResponse> {
 	@Override
-	protected Void doInBackground(PollutionVO... pollutions) {
+	protected StorePollutionResponse doInBackground(StorePollutionRequest... pollutions) {
 		if (GetPollutionService.USE_MOCKS) { // TODO: use Resources instead
 			try {
 				// sleep to simulate async call
@@ -18,7 +14,7 @@ public class StorePollutionService extends AsyncTask<PollutionVO, Void, Void> {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			InMemoryStorage.getInstance().addPollution(pollutions[0]);
+			InMemoryStorage.getInstance().addPollution(pollutions[0].getPollution());
 		} else {
 			// TODO implement real service call
 		}

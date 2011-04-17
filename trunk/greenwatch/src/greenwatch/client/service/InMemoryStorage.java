@@ -1,13 +1,13 @@
 package greenwatch.client.service;
 
 import greenwatch.common.request.GetPollutionsRequest;
+import greenwatch.common.response.GetPollutionsResponse;
 import greenwatch.common.vo.PollutionStatus;
 import greenwatch.common.vo.PollutionTO;
 import greenwatch.common.vo.PollutionVO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -34,7 +34,7 @@ public class InMemoryStorage {
 		pollutions.put(pollution.getId(), pollution);
 	}
 
-	public List<PollutionTO> getPollutions(GetPollutionsRequest req) {
+	public GetPollutionsResponse getPollutions(GetPollutionsRequest req) {
 		ArrayList<PollutionTO> tmp = new ArrayList<PollutionTO>();
 		Random rand = new Random();
 		for (int i = 0; i < 10; i++) {
@@ -57,7 +57,7 @@ public class InMemoryStorage {
 			// add on first position
 			tmp.add(0, poll);
 		}
-		return tmp;
+		return new GetPollutionsResponse(tmp.toArray(new PollutionTO[tmp.size()]));
 	}
 
 	public void updatePollution(PollutionTO pollution) {
