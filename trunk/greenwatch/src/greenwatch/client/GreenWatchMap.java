@@ -26,12 +26,13 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
-public class GreenWatchMap extends MapActivity implements LocationListener {
+public class GreenWatchMap extends MapActivity {
     private ProgressDialog mProgressDialog;
     private Drawable mMapIcon;
     private List<Overlay> mOverlays;
-	private LocationManager locationManager;
-	private MapView mapView;
+	private LocationManager mLocationManager;
+	private MapView mMapView;
+	private LocationListener mLocationListener;
     
 	/** Called when the activity is first created. */
 	
@@ -39,8 +40,8 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);  
-        mapView = (MapView) findViewById(R.id.mapview);
-        mapView.setBuiltInZoomControls(true);
+        mMapView = (MapView) findViewById(R.id.mapview);
+        mMapView.setBuiltInZoomControls(true);
         
 		mProgressDialog = new ProgressDialog(this);
 		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -50,43 +51,47 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 
 		mMapIcon = this.getResources().getDrawable(R.drawable.muell);
 
-		mOverlays = mapView.getOverlays();
+		mOverlays = mMapView.getOverlays();
 		
-		mapView.getController().setZoom(15);
+		mMapView.getController().setZoom(15);
+		mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
     }
     
     @Override
     protected boolean isRouteDisplayed() {
         return false;
     }
-    
-	public void onLocationChanged(Location location) {
-		updateLocation(location);
-	}
-	public void onProviderEnabled(String s){
-	}
-	public void onProviderDisabled(String s){
-	}
-	public void onStatusChanged(String s, int i, Bundle b){
-	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		String locationProvider = CurrentLocation.getBestLocationProvider(locationManager);
-		updateLocation(locationManager.getLastKnownLocation(locationProvider));
-		this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+		if(mLocationListener==null) {
+			// map is drawn the first time - add the location listener
+			String locationProvider = CurrentLocation.getBestLocationProvider(mLocationManager);
+			updateLocation(mLocationManager.getLastKnownLocation(locationProvider));
+			mLocationListener = new LocationListener() {
+				public void onLocationChanged(Location location) {
+					updateLocation(location);
+				}
+				public void onProviderEnabled(String s){
+				}
+				public void onProviderDisabled(String s){
+				}
+				public void onStatusChanged(String s, int i, Bundle b){
+				}		
+			};
+			this.mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
+		}
 	}
     
 	private void updateLocation(Location location) {
 		if(location!=null) {
 			GeoPoint geoPoint = GeoUtils.createGeoPoint(location.getLatitude(), location.getLongitude());
-			mapView.getController().setCenter(geoPoint);
-			int minLat = geoPoint.getLatitudeE6() - mapView.getLatitudeSpan() / 2;
-			int minLng = geoPoint.getLongitudeE6() - mapView.getLongitudeSpan() / 2;
-			int maxLat = geoPoint.getLatitudeE6() + mapView.getLatitudeSpan() / 2;
-			int maxLng = geoPoint.getLongitudeE6() + mapView.getLongitudeSpan() / 2;
+			mMapView.getController().setCenter(geoPoint);
+			int minLat = geoPoint.getLatitudeE6() - mMapView.getLatitudeSpan() / 2;
+			int minLng = geoPoint.getLongitudeE6() - mMapView.getLongitudeSpan() / 2;
+			int maxLat = geoPoint.getLatitudeE6() + mMapView.getLatitudeSpan() / 2;
+			int maxLng = geoPoint.getLongitudeE6() + mMapView.getLongitudeSpan() / 2;
 			getPolutions(GeoUtils.convertGeoInt2Dbl(minLat), GeoUtils.convertGeoInt2Dbl(minLng), 
 					GeoUtils.convertGeoInt2Dbl(maxLat), GeoUtils.convertGeoInt2Dbl(maxLng));
 			
@@ -106,8 +111,8 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 1) {
-			String locationProvider = CurrentLocation.getBestLocationProvider(locationManager);
-			updateLocation(locationManager.getLastKnownLocation(locationProvider));
+			String locationProvider = CurrentLocation.getBestLocationProvider(mLocationManager);
+			updateLocation(mLocationManager.getLastKnownLocation(locationProvider));
 		}
 	}
 
