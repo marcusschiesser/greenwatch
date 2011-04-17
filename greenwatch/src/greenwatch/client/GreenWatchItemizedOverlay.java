@@ -12,11 +12,11 @@ import com.google.android.maps.OverlayItem;
 public class GreenWatchItemizedOverlay extends ItemizedOverlay {
 	
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
-	Context mContext;
+	private Context mContext;
 	
-	public GreenWatchItemizedOverlay(Drawable defaultMarker) {
+	public GreenWatchItemizedOverlay(Drawable defaultMarker, Context context) {
 		super(boundCenterBottom(defaultMarker));
-		
+		mContext = context;
 	}
 	
 	// to add new overlay items to the ArrayList
@@ -35,11 +35,6 @@ public class GreenWatchItemizedOverlay extends ItemizedOverlay {
 		return mOverlays.size();
 	}
 
-	public GreenWatchItemizedOverlay(Drawable defaultMarker, Context context) {
-		  super(defaultMarker);
-		  mContext = context;
-		}
-	
 	@Override
 	protected boolean onTap(int index) {
 	  OverlayItem item = mOverlays.get(index);

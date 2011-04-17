@@ -127,7 +127,7 @@ public class GreenWatchMap extends MapActivity {
 				mProgressDialog.dismiss();
 				mOverlays.clear();
 				
-				GreenWatchItemizedOverlay itemizedoverlay = new GreenWatchItemizedOverlay(mMapIcon);
+				GreenWatchItemizedOverlay itemizedoverlay = new GreenWatchItemizedOverlay(mMapIcon, GreenWatchMap.this);
 				
 				for (PollutionTO pollutionVO : result.getPollutions()) {
 					GeoPoint point = GeoUtils.createGeoPoint(pollutionVO.getLatitude(), pollutionVO.getLongitude());
