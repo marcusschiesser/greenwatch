@@ -45,7 +45,7 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 		mProgressDialog.setCancelable(false);
 		mProgressDialog.setIndeterminate(true);
 
-		mMapIcon = this.getResources().getDrawable(R.drawable.atom);
+		mMapIcon = this.getResources().getDrawable(R.drawable.muell);
 
 		mOverlays = mapView.getOverlays();
 		
