@@ -48,6 +48,7 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 		mMapIcon = this.getResources().getDrawable(R.drawable.atom);
 
 		mOverlays = mapView.getOverlays();
+		
 		retrieveLocation();
     }
     
@@ -58,7 +59,8 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
     
 	public void onLocationChanged(Location location) {
 		updateLocation(location);
-		locationManager.removeUpdates(this);
+		// removeUpdates spart batterie 
+		//locationManager.removeUpdates(this);
 	}
 	public void onProviderEnabled(String s){
 	}
@@ -77,7 +79,8 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 	private void updateLocation(Location location) {
 		if(location!=null) {
 			getPolutions(location.getLatitude(), location.getLongitude());
-			mapView.getController().setCenter(new GeoPoint((int)Math.round(location.getLatitude()*1E6), (int)Math.round(location.getLongitude()*1E6)));
+			mapView.getController().setCenter(createGeoPoint(location.getLatitude(), location.getLongitude()));
+			//mapView.get
 		}
 	}
 
@@ -88,6 +91,10 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 					ReportPollutionActivity.class);
 			startActivity(intentRep);
 		}
+	}
+
+	private GeoPoint createGeoPoint(double lat, double lng) {
+		return new GeoPoint((int)Math.round(lat*1E6), (int)Math.round(lng*1E6));
 	}
 	
 	public void getPolutions(double lat, double lng) {
@@ -104,12 +111,13 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 				GreenWatchItemizedOverlay itemizedoverlay = new GreenWatchItemizedOverlay(mMapIcon);
 				
 				for (PollutionTO pollutionVO : result) {
-					GeoPoint point = new GeoPoint((int)Math.round(pollutionVO.getLatitude()*1E6), (int)Math.round(pollutionVO.getLongitude()*1E6));
+					GeoPoint point = createGeoPoint(pollutionVO.getLatitude(), pollutionVO.getLongitude());
 					OverlayItem overlayitem = new OverlayItem(point, pollutionVO.getComment(), pollutionVO.getComment());
 					itemizedoverlay.addOverlay(overlayitem);
 				}
 				mOverlays.add(itemizedoverlay);
 			}
+
     	};
     	
 		service.execute(lat, lng);		
