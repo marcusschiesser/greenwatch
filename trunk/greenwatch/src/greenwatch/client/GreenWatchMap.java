@@ -53,7 +53,6 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 		mOverlays = mapView.getOverlays();
 		
 		mapView.getController().setZoom(15);
-		retrieveLocation();
     }
     
     @Override
@@ -63,8 +62,6 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
     
 	public void onLocationChanged(Location location) {
 		updateLocation(location);
-		// removeUpdates spart batterie 
-		//locationManager.removeUpdates(this);
 	}
 	public void onProviderEnabled(String s){
 	}
@@ -73,7 +70,9 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 	public void onStatusChanged(String s, int i, Bundle b){
 	}
 
-	public void retrieveLocation() {
+	@Override
+	protected void onResume() {
+		super.onResume();
 		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 		String locationProvider = CurrentLocation.getBestLocationProvider(locationManager);
 		updateLocation(locationManager.getLastKnownLocation(locationProvider));
