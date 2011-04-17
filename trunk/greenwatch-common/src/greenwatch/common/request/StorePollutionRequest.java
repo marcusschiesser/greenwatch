@@ -5,9 +5,9 @@ import greenwatch.common.vo.PollutionVO;
 public class StorePollutionRequest {
 	
 	private PollutionVO pollution;
-	private int[] imageData;
+	private byte[] imageData;
 	
-	public StorePollutionRequest(PollutionVO pollution, int[] imageData) {
+	public StorePollutionRequest(PollutionVO pollution, byte[] imageData) {
 		super();
 		this.pollution = pollution;
 		this.imageData = imageData;
@@ -16,7 +16,7 @@ public class StorePollutionRequest {
 	public PollutionVO getPollution() {
 		return pollution;
 	}
-	public int[] getImageData() {
+	public byte[] getImageData() {
 		return imageData;
 	}
 	
