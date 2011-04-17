@@ -25,7 +25,7 @@ public class GetPollutionService extends
 				e.printStackTrace();
 			}
 			return InMemoryStorage.getInstance().getPollutions(params[0],
-					params[1]);
+					params[1], params[2], params[3]);
 		} else {
 			ClientResource cr = new ClientResource(
 					"http://10.0.2.2:8888/rest/pollutions");
