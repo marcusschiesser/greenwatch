@@ -15,7 +15,7 @@ import javax.jdo.annotations.PrimaryKey;
 import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable
-public class PollutionDO implements Serializable, PollutionTO {
+public class PollutionBean implements Serializable, PollutionTO {
 
 	private static final long serialVersionUID = 7462442753133548357L;
 

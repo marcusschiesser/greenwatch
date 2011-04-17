@@ -1,5 +1,6 @@
 package greenwatch.client.service;
 
+import greenwatch.common.request.GetPollutionsRequest;
 import greenwatch.common.vo.PollutionStatus;
 import greenwatch.common.vo.PollutionTO;
 import greenwatch.common.vo.PollutionVO;
@@ -33,21 +34,21 @@ public class InMemoryStorage {
 		pollutions.put(pollution.getId(), pollution);
 	}
 
-	public List<PollutionTO> getPollutions(double minLat, double minLng, double maxLat, double maxLng) {
+	public List<PollutionTO> getPollutions(GetPollutionsRequest req) {
 		ArrayList<PollutionTO> tmp = new ArrayList<PollutionTO>();
 		Random rand = new Random();
 		for (int i = 0; i < 10; i++) {
 			PollutionVO pollution = new PollutionVO();
-			pollution.setLatitude(minLat + rand.nextDouble() * (maxLat-minLat));
-			pollution.setLongitude(minLng + rand.nextDouble() * (maxLng-minLng));
+			pollution.setLatitude(req.getMinLat() + rand.nextDouble() * (req.getMaxLat() - req.getMinLat()));
+			pollution.setLongitude(req.getMinLng() + rand.nextDouble() * (req.getMaxLng() - req.getMinLng()));
 			pollution.setStatus(PollutionStatus.active);
 			pollution.setId(idx++);
 			tmp.add(pollution);
 		}
 		for (int i = 0; i < 10; i++) {
 			PollutionVO pollution = new PollutionVO();
-			pollution.setLatitude(minLat + rand.nextDouble() * (maxLat-minLat));
-			pollution.setLongitude(minLng + rand.nextDouble() * (maxLng-minLng));
+			pollution.setLatitude(req.getMinLat() + rand.nextDouble() * (req.getMaxLat() - req.getMinLat()));
+			pollution.setLongitude(req.getMinLng() + rand.nextDouble() * (req.getMaxLng() - req.getMinLng()));
 			pollution.setStatus(PollutionStatus.inactive);
 			pollution.setId(idx++);
 			tmp.add(pollution);
