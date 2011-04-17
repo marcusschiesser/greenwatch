@@ -13,17 +13,21 @@ public class DatabaseObjectsUtil {
 
 	public static PollutionBean convertStorePollutionRequestToBean(StorePollutionRequest request) {
 		PollutionBean bean = new PollutionBean();
-		bean.setLatitude(request.getLatitude());
-		bean.setLongitude(request.getLongitude());
-		bean.setComment(request.getComment());
-		bean.setIntensity(request.getIntensity());
-		bean.setTimestamp(request.getTimestamp());
+		if (request != null) {
+			bean.setLatitude(request.getPollution().getLatitude());
+			bean.setLongitude(request.getPollution().getLongitude());
+			bean.setComment(request.getPollution().getComment());
+			bean.setIntensity(request.getPollution().getIntensity());
+			bean.setTimestamp(request.getPollution().getTimestamp());
+		}
 		return bean;
 	}
 
 	public static PollutionBean convertUpdatePollutionRequestToBean(UpdatePollutionRequest request) {
 		PollutionBean bean = new PollutionBean();
-		bean.setId(request.getId());
+		if (request != null) {
+			bean.setId(request.getId());
+		}
 		return bean;
 	}
 
