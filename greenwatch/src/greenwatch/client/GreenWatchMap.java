@@ -100,7 +100,15 @@ public class GreenWatchMap extends MapActivity implements LocationListener {
 		case R.id.main_new_pollution:
 			final Intent intentRep = new Intent(this,
 					ReportPollutionActivity.class);
-			startActivity(intentRep);
+			startActivityForResult(intentRep,1);
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1) {
+			String locationProvider = CurrentLocation.getBestLocationProvider(locationManager);
+			updateLocation(locationManager.getLastKnownLocation(locationProvider));
 		}
 	}
 
