@@ -5,6 +5,7 @@
     <string name="edit_waiting">Bitte warten...</string>
     <string name="reportPollution_Title">Report the Pollution</string>
     <string name="locationReaderActivity">Location Reader</string>
+    <string name="serverInteractionActivity">Server Interaction ACtivity</string>
     <string-array name="level">
         <item>Low</item>
         <item>Medium</item>
