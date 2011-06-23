@@ -1,0 +1,2 @@
+serviceClass: com.greenwatch.client.GreetingService
+path: 2C70CC6AE388C72A712AB6D3BFF0C854.gwt.rpc
