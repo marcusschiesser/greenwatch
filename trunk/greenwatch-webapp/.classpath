@@ -7,7 +7,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="libs/gwt-maps-1.1.0/gwt-maps-javadoc.jar"/>
 	<classpathentry kind="lib" path="libs/gwt-maps-1.1.0/gwt-maps.jar"/>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/gwt-2.1.1"/>
 	<classpathentry kind="lib" path="libs/gwt-html5-geolocation-0.9.5/gwt-html5-geolocation.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/greenwatch-common"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-org.restlet.jar"/>
@@ -17,5 +16,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.ext.jackson.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.ext.servlet.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.jar"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
