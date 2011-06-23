@@ -49,7 +49,8 @@ public class ReportPollutionActivity  extends Activity implements LocationListen
 	private LocationManager locationManager;
 	private Location currentLocation = null;
 	
-    public void onCreate(Bundle savedInstanceState) {
+    @Override
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.report);
         retrieveLocation();

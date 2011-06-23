@@ -7,7 +7,6 @@ import greenwatch.common.request.UpdatePollutionRequest;
 import greenwatch.common.resource.PollutionResource;
 import greenwatch.common.response.GetFullPollutionResponse;
 import greenwatch.common.response.GetPollutionsResponse;
-import greenwatch.common.response.StorePollutionResponse;
 import greenwatch.common.response.UpdatePollutionResponse;
 import greenwatch.common.vo.PollutionStatus;
 import greenwatch.common.vo.PollutionTO;
@@ -38,11 +37,11 @@ public class InMemoryStorage implements PollutionResource {
 		}
 		return INSTANCE;
 	}
-	
+
 	private void delay() {
 		try {
 			// sleep to simulate async call
-			Thread.sleep(random.nextInt(2000)+100);
+			Thread.sleep(random.nextInt(2000) + 100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -75,23 +74,20 @@ public class InMemoryStorage implements PollutionResource {
 		return new GetPollutionsResponse(tmp.toArray(new PollutionTO[tmp.size()]));
 	}
 
-	public StorePollutionResponse storePollution(StorePollutionRequest request) {
+	public void storePollution(StorePollutionRequest request) {
 		delay();
 		request.getPollution().setId(idx++);
 		pollutions.put(request.getPollution().getId(), request.getPollution());
-		return new StorePollutionResponse();
+		return ;//new StorePollutionResponse();
 	}
 
-	public UpdatePollutionResponse updatePollution(
-			UpdatePollutionRequest request) {
+	public UpdatePollutionResponse updatePollution(UpdatePollutionRequest request) {
 		delay();
 		pollutions.put(request.getId(), request.getPollution());
 		return new UpdatePollutionResponse();
 	}
 
-	public GetFullPollutionResponse getFullPollution(
-			GetFullPollutionRequest request) {
-		// TODO Auto-generated method stub
+	public GetFullPollutionResponse getFullPollution(GetFullPollutionRequest request) {
 		return null;
 	}
 }

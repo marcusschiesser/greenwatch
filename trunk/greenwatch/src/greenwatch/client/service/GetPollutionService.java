@@ -3,8 +3,6 @@ package greenwatch.client.service;
 import greenwatch.common.request.GetPollutionsRequest;
 import greenwatch.common.resource.PollutionResource;
 import greenwatch.common.response.GetPollutionsResponse;
-
-
 import android.os.AsyncTask;
 
 public class GetPollutionService extends AsyncTask<GetPollutionsRequest, Void, GetPollutionsResponse> {
