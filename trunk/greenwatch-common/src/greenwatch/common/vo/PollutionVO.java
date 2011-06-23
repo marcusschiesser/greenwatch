@@ -24,22 +24,18 @@ public class PollutionVO implements Serializable, PollutionTO {
 		this.timestamp = timestamp;
 	}
 
-	@Override
 	public double getLatitude() {
 		return latitude;
 	}
 
-	@Override
 	public void setLatitude(double lat) {
 		this.latitude = lat;
 	}
 
-	@Override
 	public double getLongitude() {
 		return longitude;
 	}
 
-	@Override
 	public void setLongitude(double lng) {
 		this.longitude = lng;
 	}
@@ -76,12 +72,10 @@ public class PollutionVO implements Serializable, PollutionTO {
 		return status;
 	}
 
-	@Override
 	public int getId() {
 		return id;
 	}
 
-	@Override
 	public void setId(int id) {
 		this.id = id;
 	}
