@@ -54,18 +54,22 @@ public class PollutionBean implements Serializable, PollutionTO {
 		this.timestamp = timestamp;
 	}
 
+	@Override
 	public double getLatitude() {
 		return latitude;
 	}
 
+	@Override
 	public void setLatitude(double lat) {
 		this.latitude = lat;
 	}
 
+	@Override
 	public double getLongitude() {
 		return longitude;
 	}
 
+	@Override
 	public void setLongitude(double lng) {
 		this.longitude = lng;
 	}
@@ -110,10 +114,12 @@ public class PollutionBean implements Serializable, PollutionTO {
 		return key;
 	}
 
+	@Override
 	public int getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(int id) {
 		this.id = id;
 	}

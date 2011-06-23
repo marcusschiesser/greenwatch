@@ -1,7 +1,5 @@
 package util;
 
-import java.util.List;
-
 import greenwatch.common.request.StorePollutionRequest;
 import greenwatch.common.request.UpdatePollutionRequest;
 import greenwatch.common.response.GetFullPollutionResponse;
@@ -9,16 +7,21 @@ import greenwatch.common.vo.PollutionTO;
 import greenwatch.common.vo.PollutionVO;
 import greenwatch.server.PollutionBean;
 
+import java.util.List;
+
 public class DatabaseObjectsUtil {
 
 	public static PollutionBean convertStorePollutionRequestToBean(StorePollutionRequest request) {
 		PollutionBean bean = new PollutionBean();
 		if (request != null) {
 			bean.setLatitude(request.getPollution().getLatitude());
+			bean.setLatitude(request.getLat());
 			bean.setLongitude(request.getPollution().getLongitude());
 			bean.setComment(request.getPollution().getComment());
 			bean.setIntensity(request.getPollution().getIntensity());
 			bean.setTimestamp(request.getPollution().getTimestamp());
+		} else {
+			System.out.println("Got an empty/null request.");
 		}
 		return bean;
 	}

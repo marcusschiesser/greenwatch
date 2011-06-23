@@ -17,12 +17,14 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import org.restlet.resource.Get;
+import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
 import util.DatabaseObjectsUtil;
 
 public class PollutionServerResource extends ServerResource implements PollutionResource {
 
+	@Override
 	@Get
 	public GetPollutionsResponse getPollutions(GetPollutionsRequest request) {
 
@@ -55,20 +57,22 @@ public class PollutionServerResource extends ServerResource implements Pollution
 		return response;
 	}
 
-	@Get
-	public StorePollutionResponse storePollution(StorePollutionRequest request) {
+	@Override
+	@Put
+	public void storePollution(StorePollutionRequest request) {
 
 		PollutionBean bean = DatabaseObjectsUtil.convertStorePollutionRequestToBean(request);
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(bean);
 			StorePollutionResponse response = new StorePollutionResponse();
-			return response;
+			return ;
 		} finally {
 			pm.close();
 		}
 	}
 
+	@Override
 	@Get
 	public UpdatePollutionResponse updatePollution(UpdatePollutionRequest request) {
 		PollutionBean bean = DatabaseObjectsUtil.convertUpdatePollutionRequestToBean(request);
@@ -82,6 +86,7 @@ public class PollutionServerResource extends ServerResource implements Pollution
 		}
 	}
 
+	@Override
 	@Get
 	public GetFullPollutionResponse getFullPollution(GetFullPollutionRequest request) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
