@@ -20,6 +20,7 @@ public class ServerInteractionActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		System.setProperty("java.net.preferIPv6Addresses", "false");
 		System.out.println("Starting Server Interaction Activity.");
 		setContentView(R.layout.serverinteraction);
 		Button storePollution = (Button) findViewById(R.id.storePollution);
@@ -36,12 +37,14 @@ public class ServerInteractionActivity extends Activity {
 
 				// StorePollutionService service = new StorePollutionService();
 				// service.execute(new PollutionVO[] { poll });
-				// System.setProperty("java.net.preferIPv6Addresses", "false");
-				ClientResource cr = new ClientResource("http://zagzix.appspot.com:80/rest/pollutions");
+				System.setProperty("java.net.preferIPv6Addresses", "false");
+				ClientResource cr = new ClientResource("http://zagzix.appspot.com/rest/pollutions");
+				cr.setRequestEntityBuffering(true);
 				PollutionResource resource = cr.wrap(PollutionResource.class);
 				StorePollutionRequest req = new StorePollutionRequest(poll, null);
-				Object resp = resource.storePollution(req);
-				System.out.println("Got a response." + resp);
+				req.setLat(11111d);
+				resource.storePollution(req);
+				System.out.println("Got a response: ");
 			}
 		});
 	}

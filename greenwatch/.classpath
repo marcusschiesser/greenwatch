@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="common-src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="/greenwatch-common/libs/org.restlet.jar"/>
+	<classpathentry kind="lib" path="libs/restlet-android-2.1m4/org.restlet.jar"/>
+	<classpathentry kind="lib" path="libs/restlet-android-2.1m4/org.restlet-javadoc.zip"/>
+	<classpathentry kind="lib" path="libs/restlet-android-2.1m4/org.restlet-src.zip"/>
+	<classpathentry kind="lib" path="/greenwatch-common/src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/greenwatch-common"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -9,6 +9,7 @@ public class StorePollutionService extends AsyncTask<StorePollutionRequest, Void
 	@Override
 	protected StorePollutionResponse doInBackground(StorePollutionRequest... pollutions) {
 		PollutionResource resource = ResourceFactory.createPollutionResource();
-		return resource.storePollution(pollutions[0]);
+		resource.storePollution(pollutions[0]);
+		return new StorePollutionResponse();
 	}
 }
