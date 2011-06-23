@@ -5,6 +5,7 @@ import greenwatch.common.vo.PollutionStatus;
 
 public class GetPollutionsRequest extends AbstractRequest {
 
+	private static final long serialVersionUID = -8037060006561612356L;
 	private double minLat;
 	private double maxLat;
 	private double minLng;

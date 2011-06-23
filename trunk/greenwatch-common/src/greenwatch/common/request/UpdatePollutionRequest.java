@@ -4,6 +4,7 @@ import greenwatch.common.vo.PollutionVO;
 
 public class UpdatePollutionRequest extends AbstractRequest {
 
+	private static final long serialVersionUID = -9066869456681139737L;
 	private int id;
 	private PollutionVO pollution;
 
