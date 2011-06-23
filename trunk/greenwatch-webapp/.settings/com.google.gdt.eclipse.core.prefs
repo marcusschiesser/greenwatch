@@ -1,0 +1,5 @@
+#Sat May 07 22:12:42 CEST 2011
+eclipse.preferences.version=1
+jarsExcludedFromWebInfLib=C\:/Users/damian/eclipse/android/greenwatch-webapp/libs/gwt-maps-1.1.0/gwt-maps-javadoc.jar|C\:/Users/damian/eclipse/android/greenwatch-webapp/libs/gwt-maps-1.1.0/gwt-maps.jar
+warSrcDir=war
+warSrcDirIsOutput=true
