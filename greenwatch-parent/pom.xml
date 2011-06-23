@@ -6,11 +6,37 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+
+	<!-- include pluginRepository and repository for GWT-Maven -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>gwt-maven-plugins</id>
+			<url>
+                http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
+            </url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<repositories>
+		<repository>
+			<id>gwt-maven</id>
+			<url>http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/</url>
+		</repository>
+		<repository>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
 		<repository>
 			<id>maven-restlet</id>
 			<name>Public online Restlet repository</name>
 			<url>http://maven.restlet.org</url>
 		</repository>
+		
+		<repository>
+			<id>maven-gwt-mobile-webkit</id>
+			<name>gwt-mobile-webkit</name>
+			<url>http://gwt-mobile-webkit.googlecode.com/svn/repo/</url>
+		</repository>
+		
 	</repositories>
 </project>
